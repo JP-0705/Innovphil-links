@@ -62,26 +62,33 @@
     </div>
 
     <div class="links-container">
-        <!-- Replace the # with your actual URLs -->
-        <a href="https://www.facebook.com/innovphil" class="link-button" target="_blank">Innovphill</a>
-        <a href="https://www.facebook.com/innovphilbicol/" class="link-button" target="_blank">Innovphi Bicol Business Center</a>
-        <a href="https://www.facebook.com/InnovphilEnglishLearningAcademy/" class="link-button" target="_blank">Innovphil English Learning Academy</a>
-        <a href="https://www.facebook.com/LifeSaveByInnovphil/" class="link-button" target="_blank">Life.Save by Innovphil</a>
-        <a href="https://www.instagram.com/innovphil" class="link-button" target="_blank">Instagram</a>
+        <a href="https://facebook.com" class="link-button" onclick="trackClick(event, 'Innovphill', this.href)">Innovphill</a>
+        <a href="https://facebook.combicol/" class="link-button" onclick="trackClick(event, 'Innovphi Bicol Business Center', this.href)">Innovphi Bicol Business Center</a>
+        <a href="https://facebook.comEnglishLearningAcademy/" class="link-button" onclick="trackClick(event, 'Innovphil English Learning Academy', this.href)">Innovphil English Learning Academy</a>
+        <a href="https://facebook.com" class="link-button" onclick="trackClick(event, 'Life.Save by Innovphil', this.href)">Life.Save by Innovphil</a>
+        <a href="https://instagram.com" class="link-button" onclick="trackClick(event, 'Instagram', this.href)">Instagram</a>
     </div>
 
- <!-- 1. Vercel Web Analytics Tracking Script -->
- <script defer src="/_vercel/insights/script.js"></script>
+     <!-- 1. Vercel Web Analytics Tracking Script -->
+     <script defer src="/_vercel/insights/script.js"></script>
 
- <!-- 2. Helper Script to handle custom click actions -->
- <script>
-     window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
-     
-     function trackClick(buttonName) {
-         // Logs a custom click event directly to your Vercel Dashboard
-         va('event', { name: 'button_click', data: { button: buttonName } });
-     }
- </script>
+     <!-- 2. Fixed Helper Script to ensure clicks register before redirecting -->
+     <script>
+         window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+         
+         function trackClick(event, buttonName, targetUrl) {
+             // Prevent the browser from instantly opening the new window tab
+             event.preventDefault();
+ 
+             // Fire the tracking event directly to your Vercel Dashboard
+             va('event', { name: 'button_click', data: { button: buttonName } });
+ 
+             // Provide a 150-millisecond delay window to ensure Vercel records the request payload
+             setTimeout(() => {
+                 window.open(targetUrl, '_blank', 'noopener,noreferrer');
+             }, 150);
+         }
+     </script>
 </body>
     
 
