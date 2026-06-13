@@ -70,6 +70,22 @@
         <a href="https://www.facebook.com/LifeSaveByInnovphil/" target="_new" rel="noopener noreferrer" class="link-button">Life.Save by Innovphil</a>
         <a href="https://instagram.com" target="_new" rel="noopener noreferrer" class="link-button">Instagram</a>
     </div>
+  <!-- 1. Vercel Web Analytics Core Tracking -->
+  <script>
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
 
+<!-- 2. Automatic QR Code Tracker Script -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Checks if the QR code URL contained ?utm_source=qrcode
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('utm_source') === 'qrcode') {
+            // Sends a designated event signal straight to your Vercel Dashboard
+            window.va('event', { name: 'QR Code Scan' });
+        }
+    });
+</script>
 </body>
 </html>
