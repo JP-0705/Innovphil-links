@@ -62,33 +62,40 @@
     </div>
 
     <div class="links-container">
-        <a href="https://www.facebook.com/innovphil" class="link-button" onclick="trackClick(event, 'Innovphill', this.href)">Innovphill</a>
-        <a href="https://www.facebook.com/innovphilbicol/" class="link-button" onclick="trackClick(event, 'Innovphi Bicol Business Center', this.href)">Innovphi Bicol Business Center</a>
+        <a href="https://www.facebook.com/innovphil" class="link-button" onclick="trackClick(event, 'Innovphil', this.href)">Innovphill</a>
+        <a href="https://www.facebook.com/innovphilbicol/" class="link-button" onclick="trackClick(event, 'Innovphil Bicol Business Center', this.href)">Innovphi Bicol Business Center</a>
         <a href="https://www.facebook.com/InnovphilEnglishLearningAcademy/" class="link-button" onclick="trackClick(event, 'Innovphil English Learning Academy', this.href)">Innovphil English Learning Academy</a>
         <a href="https://www.facebook.com/LifeSaveByInnovphil/" class="link-button" onclick="trackClick(event, 'Life.Save by Innovphil', this.href)">Life.Save by Innovphil</a>
         <a href="https://www.instagram.com/innovphil" class="link-button" onclick="trackClick(event, 'Instagram', this.href)">Instagram</a>
     </div>
 
-     <!-- 1. Vercel Web Analytics Tracking Script -->
-     <script defer src="/_vercel/insights/script.js"></script>
+    <script>
+        function trackClick(event, buttonName, targetUrl) {
+            // Stop the browser from instantly opening the link
+            event.preventDefault();
 
-     <!-- 2. Fixed Helper Script to ensure clicks register before redirecting -->
-     <script>
-         window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
-         
-         function trackClick(event, buttonName, targetUrl) {
-             // Prevent the browser from instantly opening the new window tab
-             event.preventDefault();
- 
-             // Fire the tracking event directly to your Vercel Dashboard
-             va('event', { name: 'button_click', data: { button: buttonName } });
- 
-             // Provide a 150-millisecond delay window to ensure Vercel records the request payload
-             setTimeout(() => {
-                 window.open(targetUrl, '_blank', 'noopener,noreferrer');
-             }, 150);
-         }
-     </script>
+            // 1. PASTE YOUR GOOGLE COPIED WEB APP URL LINK BETWEEN THE QUOTES BELOW:
+            const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbyrRn9QNtoqADaKQ_bXj40dSp2JLTmbLMr553f8WKHvuEQ1a7MJCGtUztw7bnnsU-fdRQ/exec';
+
+            const payload = {
+                buttonName: buttonName,
+                targetUrl: targetUrl
+            };
+
+            // 2. Fire the tracking data payload package straight to your Google sheet
+            fetch(googleScriptUrl, {
+                method: 'POST',
+                mode: 'no-cors', 
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+
+            // 3. Open the link tree target safely after a 150-millisecond delay
+            setTimeout(() => {
+                window.open(targetUrl, '_blank', 'noopener,noreferrer');
+            }, 150);
+        }
+    </script>
 </body>
     
 
