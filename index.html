@@ -70,8 +70,19 @@
         <a href="https://www.instagram.com/innovphil" class="link-button" target="_blank">Instagram</a>
     </div>
 
-    
+ <!-- 1. Vercel Web Analytics Tracking Script -->
+ <script defer src="/_vercel/insights/script.js"></script>
 
+ <!-- 2. Helper Script to handle custom click actions -->
+ <script>
+     window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+     
+     function trackClick(buttonName) {
+         // Logs a custom click event directly to your Vercel Dashboard
+         va('event', { name: 'button_click', data: { button: buttonName } });
+     }
+ </script>
+</body>
     
 
 </body>
