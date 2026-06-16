@@ -38,9 +38,13 @@
             width: 100%;
             max-width: 600px;
         }
-        .link-button {
-            opacity: 65%;
-            display: block;
+            .link-button {
+            opacity: 100%;               /* Changed from 65% so the Facebook blue pops cleanly */
+            display: flex;                /* Changed from block to flex to align items horizontally */
+            align-items: center;          /* Vertically centers the logo and text */
+            justify-content: center;      /* Centers the text horizontally in the button */
+            position: relative;           /* Allows us to pin the logo to the far left */
+            
             background-color: rgb(3, 4, 94);
             color: #ffffff;
             text-align: center;
@@ -55,6 +59,77 @@
         .link-button:hover {
             transform: scale(1.02);
         }
+
+        /* The Facebook Circle Blue Badge */
+        .fb-circle {
+            background-color: #1877F2;     /* Exact Facebook Blue */
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            position: absolute;            /* Locks the logo to the left flank */
+            left: 12px;                    /* Sets crisp padding from the left edge */
+            overflow: hidden;              /* Clips the bottom of the "f" */
+            display: flex;
+            justify-content: center;       /* Centers the letter horizontally */
+        }
+
+        /* The Custom-Positioned Lowercase "f" */
+        .fb-letter {
+            color: #FFFFFF;
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 45px;               /* Scaled to fit the 36px circle */
+            font-weight: bold;
+            position: absolute;
+            bottom: -14px;                  /* Drags the letter down to flush with bottom */
+            right: 11px;                    /* Shifts the letter slightly right */
+            line-height: 1;
+            user-select: none;
+        }
+        .ig-square {
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    width: 36px;
+    height: 36px;
+    border-radius: 9px;            /* Sleek rounded squircle corners */
+    position: absolute;            /* Locks the logo to the left flank */
+    left: 12px;                    /* Aligns perfectly with the Facebook button edge */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+/* The Main Camera Outer Ring */
+.ig-camera-ring {
+    width: 26px;
+    height: 26px;
+    border: 3px solid #FFFFFF;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-sizing: border-box;
+}
+
+/* The Camera Lens (Center Circle) */
+.ig-lens {
+    width: 12px;
+    height: 12px;
+    border: 3px solid #FFFFFF;
+    border-radius: 50%;
+    box-sizing: border-box;
+}
+
+/* The Camera Flash Dot */
+.ig-flash {
+    width: 4.5px;
+    height: 4.5px;
+    background-color: #FFFFFF;
+    border-radius: 50%;
+    position: absolute;
+    top: 2px;
+    right: 2px;
+}
     </style>
 </head>
 <body>
@@ -64,11 +139,33 @@
     </div>
 
     <div class="links-container">
-        <a href="https://www.facebook.com/innovphil" target="_new" rel="noopener noreferrer" class="link-button">Innovphil</a>
-        <a href="https://www.facebook.com/innovphilbicol/" target="_new" rel="noopener noreferrer" class="link-button">Innovphil Bicol Business Center</a>
-        <a href="https://www.facebook.com/InnovphilEnglishLearningAcademy/" target="_new" rel="noopener noreferrer" class="link-button">Innovphil English Learning Academy</a>
-        <a href="https://www.facebook.com/LifeSaveByInnovphil/" target="_new" rel="noopener noreferrer" class="link-button">Life.Save by Innovphil</a>
-        <a href="https://www.instagram.com/innovphil" target="_new" rel="noopener noreferrer" class="link-button">Instagram</a>
+        <a href="https://facebook.com/innovphil" target="_blank" rel="noopener noreferrer" class="link-button">
+            <!-- Replicated Logo pinned left -->
+            <div class="fb-circle">
+                <span class="fb-letter">f</span>
+            </div>
+            Innovphil
+        </a>
+    
+        <a href="https://www.facebook.com/innovphilbicol/" target="_new" rel="noopener noreferrer" class="link-button">
+            <div class="fb-circle">
+                <span class="fb-letter">f</span>
+            </div>Innovphil Bicol Business Center</a>
+        <a href="https://www.facebook.com/InnovphilEnglishLearningAcademy/" target="_new" rel="noopener noreferrer" class="link-button">
+            <div class="fb-circle">
+                <span class="fb-letter">f</span>
+            </div>Innovphil English Learning Academy</a>
+        <a href="https://www.facebook.com/LifeSaveByInnovphil/" target="_new" rel="noopener noreferrer" class="link-button">
+            <div class="fb-circle">
+                <span class="fb-letter">f</span>
+            </div>Life.Save by Innovphil</a>
+        <a href="https://www.instagram.com/innovphil" target="_new" rel="noopener noreferrer" class="link-button">
+            <div class="ig-square">
+                <div class="ig-camera-ring">
+                    <div class="ig-lens"></div>
+                    <div class="ig-flash"></div>
+                </div>
+            </div>Instagram</a>
     </div>
   <!-- 1. Vercel Web Analytics Core Tracking -->
   <script>
